@@ -1,16 +1,10 @@
+import os
 import pickle
 
 import cv2
 import face_recognition
 import numpy as np
 from joblib import load
-
-file_path = "../models/lgbm_all_updated.pickle"
-
-infile = open(file_path, 'rb')
-model = pickle.load(infile)
-infile.close()
-
 
 bb_dimensions = (40, 40)
 
@@ -75,9 +69,17 @@ def get_feature_array_from_image_list(imgpathlist):
     return np.asarray(features_all)
 
 
-img_path = "/src/fakesdetection/test_images/faces/000_003.mp4_image4.jpg"
+def extract_model(img_path):
+    file_path = "../models/lgbm_all_updated.pickle"
 
-f_array = get_feature_array_from_image_list(img_path)
+    infile = open(file_path, 'rb')
+    model = pickle.load(infile)
+    infile.close()
+    if os.path.exists(img_path):
+        f_array = get_feature_array_from_image_list(img_path)
+        prediction = model.predict(f_array)
+        print(prediction)
+    else:
+        print("File not found file:", img_path)
 
-prediction = model.predict(f_array)
-print(prediction)
+

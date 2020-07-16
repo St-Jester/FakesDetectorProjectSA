@@ -67,7 +67,6 @@ def get_feature_array_from_image_list(imgpathlist):
     images_resized = []
     features_all = []
     img = imgpathlist
-    print(img)
 
     img_cv2 = cv2.imread(img)[..., ::-1]
 
@@ -85,7 +84,7 @@ def extract_model(img_path):
     model = pickle.load(infile)
     infile.close()
 
-    if(os.path.exists(img_path)):
+    if os.path.exists(img_path):
         f_array = get_feature_array_from_image_list(img_path)
     else:
         print("File not found file:", img_path)
