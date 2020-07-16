@@ -19,7 +19,9 @@ What was added to the projects:
 
 ## Some notes 
 Please, provide only absolute path ot video.
+
 The video shouldn't be long (or it will take ages to compile)
+
 There are some example videos for you to test the project (those are videos from face_forensics)
 Usage:
 
