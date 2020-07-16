@@ -87,12 +87,10 @@ def extract_model(img_path):
     if os.path.exists(img_path):
         f_array = get_feature_array_from_image_list(img_path)
     else:
-        print("File not found file:", img_path)
+        raise SystemExit(f"File not found {img_path}")
 
     pca_dict = load("../models/pca550.joblib")
     new_data_pca = pca_dict.transform(f_array)
-
-    # Fit PCA on train_Z
 
     prediction = model.predict(new_data_pca)
     print(prediction)

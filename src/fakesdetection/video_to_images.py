@@ -50,20 +50,24 @@ def video_to_images(absolute_path_to_vid):
 
     vidname = absolute_path_to_vid
     path_vid = absolute_path_to_vid
-    vidcap = cv2.VideoCapture(path_vid)
-    sec = 0
-    frameRate = 2
-    count = 1
-    path = project_path + '/test_images/'
-    success = get_frame(vidcap, sec, vidname, path, count)
-    while success:
-        count = count + 1
-        sec = sec + frameRate
-        sec = round(sec, 2)
+    if not os.path.exists(vidname):
+        raise SystemExit(f"File not found {vidname}")
+    else:
+        vidcap = cv2.VideoCapture(path_vid)
+        sec = 0
+        frameRate = 2
+        count = 1
+        path = project_path + '/test_images/'
         success = get_frame(vidcap, sec, vidname, path, count)
+        while success:
+            count = count + 1
+            sec = sec + frameRate
+            sec = round(sec, 2)
+            success = get_frame(vidcap, sec, vidname, path, count)
 
-    folder = project_path + '/test_images/'
-    clear_dir(folder)
+        folder = project_path + '/test_images/'
+        clear_dir(folder)
+        return 1
 
 
 def splitall(path):
