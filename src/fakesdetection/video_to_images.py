@@ -89,9 +89,6 @@ def get_path():
     final_path = os.path.join(*parted, file)
     final_path = final_path.replace("\\", "/")
     final_path = final_path
-    # to list
-    # [:-4]
-    # to string
 
     return final_path
 
